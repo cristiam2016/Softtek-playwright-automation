@@ -30,7 +30,7 @@ jobs:
       - name: 5. Ejecutar Pruebas Automatizadas
         run: npx playwright test
 
-      - - name: 6. Subir resultados de Allure como evidencia
+      - name: 6. Subir resultados de Allure como evidencia
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
