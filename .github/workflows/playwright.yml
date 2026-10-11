@@ -7,6 +7,11 @@ on:
   pull_request:
     branches: [ main, master ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   test:
     timeout-minutes: 60
@@ -30,10 +35,16 @@ jobs:
       - name: 5. Ejecutar Pruebas Automatizadas
         run: npx playwright test
 
-      - name: 6. Subir resultados de Allure como evidencia
-        uses: actions/upload-artifact@v4
+      - name: 6. Generar Reporte de Allure
+        uses: simple-elf/allure-report-action@v1.7
         if: ${{ !cancelled() }}
         with:
-          name: allure-results
-          path: allure-results/
-          retention-days: 30
+          allure_results: allure-results
+          allure_history: allure-history
+
+      - name: 7. Desplegar en GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ !cancelled() }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-history
