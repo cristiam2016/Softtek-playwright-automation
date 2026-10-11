@@ -1,0 +1,39 @@
+name: Playwright Automation pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Descargar el código del proyecto
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: 3. Instalar dependencias
+        run: npm ci
+
+      - name: 4. Instalar navegadores de Playwright
+        run: npx playwright install --with-deps
+
+      - name: 5. Ejecutar Pruebas Automatizadas
+        run: npx playwright test
+
+      - - name: 6. Subir resultados de Allure como evidencia
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: allure-results
+          path: allure-results/
+          retention-days: 30
