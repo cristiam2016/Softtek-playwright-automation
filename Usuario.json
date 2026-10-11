@@ -1,0 +1,17 @@
+[
+  
+  {
+    "escenario": "Usuario Bloqueado",
+    "usuario": "locked_out_user",
+    "clave": "secret_sauce",
+    "esValido": false,
+    "mensajeErrorEsperado": "Epic sadface: Sorry, this user has been locked out."
+  },
+  {
+    "escenario": "Usuario Inexistente",
+    "usuario": "usuario_falso",
+    "clave": "clave_incorrecta",
+    "esValido": false,
+    "mensajeErrorEsperado": "Epic sadface: Username and password do not match any user in this service"
+  }
+]
