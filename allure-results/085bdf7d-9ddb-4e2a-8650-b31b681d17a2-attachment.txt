@@ -1,0 +1,2 @@
+🔒 Conexión a la Base de Datos cerrada.
+Nota: Si no tienes una base de datos local encendida, este error es normal hasta que configures los datos en tu .env

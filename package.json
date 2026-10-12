@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {"test:allure": "npx playwright test tests/login-negativo.spec.ts && npx allure serve allure-results"},
+  "scripts": {
+    "test:allure": "npx playwright test tests/login-negativo.spec.ts && npx allure serve allure-results"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,12 +14,13 @@
     "@playwright/test": "^1.64.0",
     "@types/dotenv": "^6.1.1",
     "@types/node": "^26.6.5",
+    "@types/pg": "^8.23.1",
     "allure-commandline": "^2.46.1",
     "allure-playwright": "^3.13.0"
   },
   "dependencies": {
     "dotenv": "^18.0.7",
+    "pg": "^8.23.1",
     "xlsx": "^0.18.5"
   }
-  
 }
